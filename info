@@ -1,0 +1,10 @@
+настройка eslint добавлены:
+@typescript-eslint/parser
+@typescript-eslint/eslint-plugin
+
+stylelint
+stylelint-config-standard
+ошибки
+stylelint-order
+stylelint-order-config-standard
+
