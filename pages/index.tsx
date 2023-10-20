@@ -1,5 +1,7 @@
+import Button from '@/components/Button/Button';
 import Htag from '@/components/Htag/Htag';
 import Head from 'next/head';
+import Typography from '@/components/Typography/Typography';
 
 export default function Home() {
   return (
@@ -16,8 +18,13 @@ export default function Home() {
           rel='stylesheet'
         />
       </Head>
-      <main>
+      <main style={{padding: '50px'}}>
         <Htag tag='h1'>Текст</Htag>
+        <Button variant='primary'>Кнопка</Button>
+        <Button variant='outlined'>Кнопка</Button>
+        <Button variant='outlined' arrow='right'>Кнопка</Button>
+        <Button variant='primary' arrow='down'>Кнопка</Button>
+        <Typography size='l'>Параграф</Typography>
       </main>
     </>
   );

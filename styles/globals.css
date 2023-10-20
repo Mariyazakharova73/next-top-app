@@ -1,7 +1,9 @@
 :root {
 	--black: #3B434E;
 	--white: white;
-	--primary: #4285B4;
+	--gray-light: #EBEBEB;
+	--primary: #188EE2;
+	--primary-hover: #2072AD;
 	--red: #F38181;
 	--green: #4DD18B;
 	--green-light: #7FFFD4;
@@ -12,17 +14,14 @@ html,
 body {
 	margin: 0;
 	padding: 0;
-
 	color: var(--black);
-	background-color: #F5F6F8;
-
 	font-family: var(--font-family);
+	background-color: #F5F6F8;
 }
 
 a {
-	text-decoration: none;
-
 	color: inherit;
+	text-decoration: none;
 }
 
 * {

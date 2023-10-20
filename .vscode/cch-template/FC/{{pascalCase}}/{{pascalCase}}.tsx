@@ -3,7 +3,7 @@ import cn from 'classnames';
 import s from './{{pascalCase}}.module.css';
 import { {{pascalCase}}Props } from './{{pascalCase}}.props';
 
-const {{pascalCase}}: FC<{{pascalCase}}Props> = () => {
+const {{pascalCase}}: FC<{{pascalCase}}Props> = ({ children }) => {
   return (
     <div className={}></div>
   )
