@@ -1,8 +1,30 @@
-.wrapper {
+.footer {
   background-color: var(--primary);
   padding: 25px 30px;
   color: var(--white);
   display: grid;
   grid-template-columns: 1fr auto auto;
-  gap: 40px;
+  gap: 10px 40px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.text {
+  margin: 0;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link:hover {
+  color: var(--gray-light)
+}
+
+@media (max-width: 765px) {
+  .footer {
+    grid-template-columns: 1fr;
+  }
 }
