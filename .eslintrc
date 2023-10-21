@@ -5,6 +5,7 @@
   "parserOptions": { "project": ["./tsconfig.json"] },
   "rules": {
     "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
 
     "semi": "off",
     "@typescript-eslint/semi": ["warn"],
@@ -16,5 +17,9 @@
     ]
   },
   "ignorePatterns": ["src/**/*.test.ts", "src/frontend/generated/*"],
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"]
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended"
+  ]
 }

@@ -1,0 +1,8 @@
+.wrapper {
+  background-color: var(--primary);
+  padding: 25px 30px;
+  color: var(--white);
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 40px;
+}

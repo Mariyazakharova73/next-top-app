@@ -2,8 +2,13 @@ import Button from '@/components/Button/Button';
 import Htag from '@/components/Htag/Htag';
 import Head from 'next/head';
 import Typography from '@/components/Typography/Typography';
+import Tag from '@/components/Tag/Tag';
+import Rating from '@/components/Rating/Rating';
+import { useState } from 'react';
+import { withLayout } from './../layout/Layout';
 
-export default function Home() {
+function Home() {
+  const [rating, setRating] = useState<number>(4);
   return (
     <>
       <Head>
@@ -18,14 +23,38 @@ export default function Home() {
           rel='stylesheet'
         />
       </Head>
-      <main style={{padding: '50px'}}>
+      <>
         <Htag tag='h1'>Текст</Htag>
         <Button variant='primary'>Кнопка</Button>
         <Button variant='outlined'>Кнопка</Button>
-        <Button variant='outlined' arrow='right'>Кнопка</Button>
-        <Button variant='primary' arrow='down'>Кнопка</Button>
+        <Button variant='outlined' arrow='right'>
+          Кнопка
+        </Button>
+        <Button variant='primary' arrow='down'>
+          Кнопка
+        </Button>
+        <Typography size='s'>Параграф</Typography>
+        <Typography size='m'>Параграф</Typography>
         <Typography size='l'>Параграф</Typography>
-      </main>
+        <Tag size='s' color='ghost'>
+          Tag
+        </Tag>
+        <Tag size='s' color='red'>
+          Tag
+        </Tag>
+        <Tag size='s' color='green'>
+          Tag
+        </Tag>
+        <Tag size='s' color='primary'>
+          Tag
+        </Tag>
+        <Tag size='m' color='primary'>
+          Tag
+        </Tag>
+        <Rating rating={rating} isEditable setRating={setRating} />
+      </>
     </>
   );
 }
+
+export default withLayout(Home);
