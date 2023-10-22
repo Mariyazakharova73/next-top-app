@@ -5,6 +5,8 @@ import { LayoutProps } from './Layout.props';
 import Header from './Header/Header';
 import Sidebar from './Sidebar/Sidebar';
 import Footer from './Footer/Footer';
+import { AppContextProvider } from '@/context/app.context';
+import { IAppContext } from './../context/app.context';
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
@@ -12,17 +14,19 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       <Header className={s.header} />
       <Sidebar className={s.sidebar} />
       <div className={s.body}>{children}</div>
-      <Footer className={s.footer}/>
+      <Footer className={s.footer} />
     </div>
   );
 };
 
-export const withLayout = <T extends Record<string, unknown>>(Component: FC<T>) => {
+export const withLayout = <T extends Record<string, unknown> & IAppContext>(Component: FC<T>) => {
   return function withLayoutComponent(props: T): JSX.Element {
     return (
-      <Layout>
-        <Component {...props} />
-      </Layout>
+      <AppContextProvider menu={props.menu} firstCategory={props.firstCategory}>
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      </AppContextProvider>
     );
   };
 };

@@ -9,7 +9,6 @@ import { ProductModel } from '@/interfaces/product.interface';
 const firstCategory = 0;
 
 function Course({ menu, page, products }: CourseProps): JSX.Element {
-  console.log(menu);
   return <>{products && products.length}</>;
 }
 
