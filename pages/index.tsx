@@ -31,7 +31,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 
 function Home({ menu }: HomeProps) {
   const [rating, setRating] = useState<number>(4);
-  console.log(menu);
   return (
     <>
       <Head>

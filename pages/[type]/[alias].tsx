@@ -1,4 +1,4 @@
-import { withLayout } from './../../layout/Layout';
+import { withLayout } from '../../layout/Layout';
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
 import axios from 'axios';
 import { MenuItem } from '../../interfaces/menu.interface';
@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps<CourseProps> = async ({
     process.env.NEXT_PUBLIC_DOMAIN + '/api/product/find',
     {
       category: page.category,
-      limit: 10
+      limit: 5
     }
   );
 
