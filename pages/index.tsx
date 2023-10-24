@@ -16,14 +16,15 @@ export interface HomeProps extends Record<string, unknown> {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const firstCategory = 0;
+  const firstCategory = 1;
   const { data: menu } = await axios.post<MenuItem[]>(
     process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find',
     { firstCategory }
   );
+
   return {
     props: {
-      menu,
+      menu: menu,
       firstCategory
     }
   };

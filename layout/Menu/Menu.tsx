@@ -5,26 +5,26 @@ import { AppContext } from '@/context/app.context';
 import { FirstLevelMenuItem, PageItem } from '@/interfaces/menu.interface';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
-
+import { firstLevelMenu } from '@/helpers/helpers';
 
 const Menu = () => {
   const { menu, changeMenu, firstCategory } = useContext(AppContext);
   const router = useRouter();
-
-  console.log(menu);
 
   const openSecondLevel = (secondCategory: string) => {
     changeMenu &&
       changeMenu(
         menu.map((m) => {
           if (m._id.secondCategory === secondCategory) {
-            m.isOpened = !m.isOpened
+            m.isOpened = !m.isOpened;
           }
           return m;
         })
       );
   };
+
+  //console.log(menu)
+  //console.log(menu.flatMap((m) => m.pages))
 
   const buildFirstLevel = () => {
     return (
