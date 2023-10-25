@@ -6,12 +6,20 @@ import { TopLevelCategory, TopPageModel } from '../../interfaces/page.interface'
 import { ParsedUrlQuery } from 'querystring';
 import { ProductModel } from '@/interfaces/product.interface';
 import { firstLevelMenu } from '@/helpers/helpers';
+import TopPageComponent from '@/page-components/TopPageComponent/TopPageComponent';
 
-function Course({ menu, page, products }: CourseProps): JSX.Element {
-  return <>{products && products.length}</>;
+export interface TopPageProps extends Record<string, unknown> {
+  menu: MenuItem[];
+  firstCategory: TopLevelCategory;
+  page: TopPageModel;
+  products: ProductModel[];
 }
 
-export default withLayout(Course);
+function TopPage({ menu, page, products, firstCategory }: TopPageProps): JSX.Element {
+  return <TopPageComponent firstCategory={firstCategory} page={page} products={products} />;
+}
+
+export default withLayout(TopPage);
 
 export const getStaticPaths: GetStaticPaths = async () => {
   let paths: string[] = [];
@@ -24,7 +32,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths = paths.concat(
       menu.flatMap((m) => m.pages.map((p) => `/${firstLevelItem.route}/${p.alias}`))
     );
-    console.log(paths)
+    console.log(paths);
   }
 
   return {
@@ -48,7 +56,6 @@ export const getStaticProps: GetStaticProps<CourseProps> = async ({
       { firstCategory: firstCategoryItem.id }
     );
 
-
     if (menu.length === 0) return { notFound: true };
 
     const { data: page } = await axios.get<TopPageModel>(
@@ -59,7 +66,7 @@ export const getStaticProps: GetStaticProps<CourseProps> = async ({
       process.env.NEXT_PUBLIC_DOMAIN + '/api/product/find',
       {
         category: page.category,
-       limit: 5
+        limit: 5
       }
     );
 
@@ -75,10 +82,3 @@ export const getStaticProps: GetStaticProps<CourseProps> = async ({
     return { notFound: true };
   }
 };
-
-export interface CourseProps extends Record<string, unknown> {
-  menu: MenuItem[];
-  firstCategory: TopLevelCategory;
-  page: TopPageModel;
-  products: ProductModel[];
-}

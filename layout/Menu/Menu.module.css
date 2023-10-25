@@ -1,70 +1,70 @@
 .firstLevel {
-  display: grid;
-  grid-template-columns: 24px 1fr;
-  gap: 20px;
-  align-items: center;
-  margin-top: 15px;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 25px;
+	display: grid;
+	grid-template-columns: 24px 1fr;
+	gap: 20px;
+	align-items: center;
+	margin-top: 15px;
+	font-weight: 500;
+	font-size: 18px;
+	line-height: 25px;
 }
 
 .firstLevelActive,
 .firstLevel:hover {
-  color: var(--primary);
+	color: var(--primary);
 }
 
 .firstLevelActive svg,
 .firstLevel:hover svg {
-  fill: var(--primary);
+	fill: var(--primary);
 }
 
 .secondLevelWrapper {
-  margin-top: 15px;
-  margin-left: 12px;
-  padding-left: 32px;
-  border-left: 1px solid #DFDFDF;
+	margin-top: 15px;
+	margin-left: 12px;
+	padding-left: 32px;
+	border-left: 1px solid #DFDFDF;
 }
 
 .secondLevelTitle {
-  margin-bottom: 10px;
-  color: var(--gray-dark);
-  font-weight: 300;
-  font-size: 12px;
-  line-height: 16px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: opacity .5s;
-  opacity: 1;
+	margin-bottom: 10px;
+	color: var(--gray-dark);
+	font-weight: 300;
+	font-size: 12px;
+	line-height: 16px;
+	text-transform: uppercase;
+	cursor: pointer;
+	opacity: 1;
+	transition: opacity .5s;
 }
 
 .secondLevelTitle:hover {
-  opacity: 0.5
+	opacity: 0.5
 }
 
 .secondLevelBlock {
-  display: none;
+	display: none;
 }
 
 .secondLevelBlockOpened {
-  display: block;
+	display: block;
 }
 
 .secondLevelBlockOpened:last-child {
-  margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .thirdLevel {
-  display: block;
-  margin-bottom: 10px;
-  color: var(--gray-dark);
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 19px;
-  cursor: pointer;
+	display: block;
+	margin-bottom: 10px;
+	color: var(--gray-dark);
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 19px;
+	cursor: pointer;
 }
 
 .thirdLevelActive,
 .thirdLevel:hover {
-  color: var(--primary)
+	color: var(--primary)
 }
