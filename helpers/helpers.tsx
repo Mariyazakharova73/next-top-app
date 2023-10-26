@@ -2,7 +2,7 @@ import CoursesIcon from '../layout/Menu/icons/courses.svg';
 import ServicesIcon from '../layout/Menu/icons/services.svg';
 import BooksIcon from '../layout/Menu/icons/books.svg';
 import ProductsIcon from '../layout/Menu/icons/product.svg';
-import { FirstLevelMenuItem } from "@/interfaces/menu.interface";
+import { FirstLevelMenuItem } from '@/interfaces/menu.interface';
 import { TopLevelCategory } from '@/interfaces/page.interface';
 
 export const firstLevelMenu: FirstLevelMenuItem[] = [
@@ -11,3 +11,10 @@ export const firstLevelMenu: FirstLevelMenuItem[] = [
   { route: 'books', name: 'Книги', icon: <BooksIcon />, id: TopLevelCategory.Books },
   { route: 'products', name: 'Продукты', icon: <ProductsIcon />, id: TopLevelCategory.Products }
 ];
+
+export const priceRu = (price: number): string => {
+  return price
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+    .concat(' ₽');
+};

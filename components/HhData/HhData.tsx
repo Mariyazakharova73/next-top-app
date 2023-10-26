@@ -4,6 +4,7 @@ import s from './HhData.module.css';
 import { HhDataProps } from './HhData.props';
 import Card from '../Card/Card';
 import RateIcon from './rate.svg';
+import { priceRu } from '@/helpers/helpers';
 
 const HhData: FC<HhDataProps> = ({ count, juniorSalary, middleSalary, seniorSalary }) => {
   return (
@@ -15,7 +16,7 @@ const HhData: FC<HhDataProps> = ({ count, juniorSalary, middleSalary, seniorSala
       <Card className={s.salary}>
         <div>
           <p className={s.title}>Начальный</p>
-          <p className={s.salaryValue}>{juniorSalary}</p>
+          <p className={s.salaryValue}>{priceRu(juniorSalary)}</p>
           <div className={s.rate}>
             <RateIcon className={s.filled} />
             <RateIcon />
@@ -24,7 +25,7 @@ const HhData: FC<HhDataProps> = ({ count, juniorSalary, middleSalary, seniorSala
         </div>
         <div>
           <p className={s.title}>Средний</p>
-          <p className={s.salaryValue}>{middleSalary}</p>
+          <p className={s.salaryValue}>{priceRu(middleSalary)}</p>
           <div className={s.rate}>
             <RateIcon className={s.filled} />
             <RateIcon className={s.filled}/>
@@ -33,7 +34,7 @@ const HhData: FC<HhDataProps> = ({ count, juniorSalary, middleSalary, seniorSala
         </div>
         <div>
           <p className={s.title}>Профессионал</p>
-          <p className={s.salaryValue}>{seniorSalary}</p>
+          <p className={s.salaryValue}>{priceRu(seniorSalary)}</p>
           <div className={s.rate}>
             <RateIcon className={s.filled} />
             <RateIcon className={s.filled}/>
@@ -46,3 +47,4 @@ const HhData: FC<HhDataProps> = ({ count, juniorSalary, middleSalary, seniorSala
 };
 
 export default HhData;
+
