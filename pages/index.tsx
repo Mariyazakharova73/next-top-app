@@ -5,10 +5,11 @@ import Typography from '@/components/Typography/Typography';
 import Tag from '@/components/Tag/Tag';
 import Rating from '@/components/Rating/Rating';
 import { useState } from 'react';
-import { withLayout } from './../layout/Layout';
 import { GetStaticProps } from 'next';
 import axios from 'axios';
 import { MenuItem } from '@/interfaces/menu.interface';
+import { withLayout } from '@/layout/Layout';
+import Search from '@/components/Search/Search';
 
 export interface HomeProps extends Record<string, unknown> {
   menu: MenuItem[];
@@ -47,6 +48,7 @@ function Home({ menu }: HomeProps) {
         />
       </Head>
       <>
+   
         <Htag tag='h1'>Текст</Htag>
         <Button variant='primary'>Кнопка</Button>
         <Button variant='outlined'>Кнопка</Button>

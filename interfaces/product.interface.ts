@@ -14,7 +14,7 @@ export interface ReviewModel {
 
 export interface ProductModel {
   _id: string;
-  categories: string;
+  categories: string[];
   tags: string;
   title: string;
   link: string;
@@ -32,4 +32,5 @@ export interface ProductModel {
   reviewCount: number;
   reviewAvg?: number;
   advantages: string;
+  disadvantages: string;
 }

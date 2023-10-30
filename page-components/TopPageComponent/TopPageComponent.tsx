@@ -1,5 +1,4 @@
 import React, { useReducer, type FC } from 'react';
-import cn from 'classnames';
 import s from './TopPageComponent.module.css';
 import { TopPageComponentProps } from './TopPageComponent.props';
 import Htag from '@/components/Htag/Htag';
@@ -10,6 +9,7 @@ import Advantages from '@/components/Advantages/Advantages';
 import Sort from '@/components/Sort/Sort';
 import { SortEnum } from '@/components/Sort/Sort.props';
 import { sortReducer } from './sort.reducer';
+import Product from '@/components/Product/Product';
 
 const TopPageComponent: FC<TopPageComponentProps> = ({ page, products, firstCategory }) => {
   const [{ products: sortProducts, sort }, dispatchSort] = useReducer(sortReducer, {
@@ -32,7 +32,7 @@ const TopPageComponent: FC<TopPageComponentProps> = ({ page, products, firstCate
         )}
         <Sort sort={sort} setSort={setSort} />
       </div>
-      <div>{sortProducts && sortProducts.map((p) => <div key={p._id}>{p.title}</div>)}</div>
+      <div>{sortProducts && sortProducts.map((p) => <Product key={p._id} product={p} />)}</div>
       <div className={s.hhTitle}>
         <Htag tag='h2'>Вакансии - {page.category}</Htag>
         {products && (
