@@ -9,7 +9,6 @@ import { GetStaticProps } from 'next';
 import axios from 'axios';
 import { MenuItem } from '@/interfaces/menu.interface';
 import { withLayout } from '@/layout/Layout';
-import Search from '@/components/Search/Search';
 
 export interface HomeProps extends Record<string, unknown> {
   menu: MenuItem[];
