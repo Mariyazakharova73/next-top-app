@@ -1,86 +1,43 @@
-import React, { type FC } from 'react';
+import React, { Fragment, useState, type FC } from 'react';
 import s from './Product.module.css';
 import { ProductProps } from './Product.props';
 import Card from '../Card/Card';
-import Rating from '../Rating/Rating';
-import Tag from '../Tag/Tag';
-import Button from '../Button/Button';
-import { declOfNum, priceRu } from '@/helpers/helpers';
-import Divider from './../Divider/Divider';
-import Image from 'next/image';
 import cn from 'classnames';
+import ProductCardInfo from '../ProductCardInfo/ProductCardInfo';
+import Review from '../Review/Review';
+import Divider from '../Divider/Divider';
+import ReviewForm from '../ReviewForm/ReviewForm';
 
 const Product: FC<ProductProps> = ({ product, className, ...props }) => {
+  const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
+
+  const handleReviewOpened = () => {
+    setIsReviewOpened(!isReviewOpened);
+  };
+
   return (
-    <Card className={s.product}>
-      <div className={s.logo}>
-        <Image
-          src={process.env.NEXT_PUBLIC_DOMAIN + product.image}
-          width={70}
-          height={70}
-          alt={product.title}
-        />
-      </div>
-      <div className={s.title}>{product.title}</div>
-      <div className={s.price}>
-        {priceRu(product.price)}
-        {product.oldPrice && (
-          <Tag className={s.oldPrice} color='green'>
-            {priceRu(product.price - product.oldPrice)}
-          </Tag>
-        )}
-      </div>
-      <div className={s.credit}>
-        {priceRu(product.credit)}/<span className={s.month}>мес</span>
-      </div>
-      <div className={s.rating}>
-        <Rating rating={product.reviewAvg ?? product.initialRating} />
-      </div>
-      <div className={s.tags}>
-        {product.categories.map((c) => (
-          <Tag className={s.tag} key={c} color='ghost'>
-            {c}
-          </Tag>
+    <>
+      <ProductCardInfo
+        product={product}
+        handleReviewOpened={handleReviewOpened}
+        isReviewOpened={isReviewOpened}
+      />
+      <Card
+        color='blue'
+        className={cn(s.reviews, {
+          [s.opened]: isReviewOpened,
+          [s.closed]: !isReviewOpened
+        })}
+      >
+        {product.reviews.map((r) => (
+          <Fragment key={r._id}>
+            <Review  review={r} />
+            <Divider />
+          </Fragment>
         ))}
-      </div>
-      <div className={s.priceTitle}>цена</div>
-      <div className={s.creditTitle}>кредит</div>
-      <div className={s.rateTitle}>
-        {product.reviewCount} {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
-      </div>
-      <Divider className={s.hr} />
-      <div className={s.description}>{product.description}</div>
-      <div className={s.feature}>
-        {product.characteristics.map((c) => (
-          <div className={s.characteristics} key={c.name}>
-            <span className={s.characteristicsName}>{c.name}</span>
-            <span className={s.characteristicsDots}></span>
-            <span className={s.characteristicsValue}>{c.value}</span>
-          </div>
-        ))}
-      </div>
-      <div className={s.advBlock}>
-        {product.advantages && (
-          <div className={s.advantages}>
-            <div className={s.advTitle}>Преимущества</div>
-            <div>{product.advantages}</div>
-          </div>
-        )}
-        {product.disadvantages && (
-          <div className={s.disadvantages}>
-            <div className={s.advTitle}>Недостатки</div>
-            <div>{product.disadvantages}</div>
-          </div>
-        )}
-      </div>
-      <Divider className={cn(s.hr, s.hr2)} />
-      <div className={s.actions}>
-        <Button variant='primary'>Узнать подробнее</Button>
-        <Button variant='outlined' arrow='right'>
-          Читать отзывы
-        </Button>
-      </div>
-    </Card>
+        <ReviewForm productId={product._id}/>
+      </Card>
+    </>
   );
 };
 
