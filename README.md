@@ -2,10 +2,10 @@
 
 #### О проекте
  
- Приложение с информацией о курсах.
+ Приложение с информацией о курсах. Можно посмотреть информацию о курсах, посмотреть отзывы, написать и отправить свой отзыв.
  Роутинг настроен без App Router. 
  Для управления состоянием используется React Contex.
- В верстке используется grid. 
+ В верстке используется grid. Работа с формой осуществляется через react hook form. 
 
 #### Технологии
 
@@ -13,6 +13,7 @@
   <img height='25px' src="https://img.shields.io/badge/React-20232A??style=plastic&logo=react&logoColor=61DAFB" alt="React">
   <img height='25px' src="https://img.shields.io/badge/TypeScript-20232A??style=plastic&logo=typescript&logoColor=3178C6" alt="TypeScript">
   <img height='25px' src="https://img.shields.io/badge/Next.js-20232A??style=plastic&logo=nextdotjs&logoColor=000000" alt="Nextjs.">
+  <img height='25px' src="https://img.shields.io/badge/React Hook Form-20232A??style=for-the-badge&logo=ReactHookForm&logoColorEC5990" alt="ReactHookForm">
   <img height='25px' src="https://img.shields.io/badge/Axios-20232A??style=for-the-badge&logo=Axios&logoColor=5A29E4" alt="Axios">
 </div>
 

@@ -6,7 +6,7 @@
 	margin-bottom: 30px;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (width <= 640px) {
 	.title {
 		grid-template-columns: auto 1fr;
 	}
@@ -28,11 +28,11 @@
 
 .seo h2 {
 	margin: 0;
+	margin-top: 50px;
+	margin-bottom: 25px;
 	font-weight: 500;
 	line-height: 30px;
 	size: 22px;
-	margin-top: 50px;
-	margin-bottom: 25px;
 }
 
 .seo h3 {

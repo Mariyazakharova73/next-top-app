@@ -1,19 +1,19 @@
 .titleWrapper {
-  display: grid;
-  grid-template-columns: 50px 1fr;
-  gap: 10px 40px;
+	display: grid;
+	grid-template-columns: 50px 1fr;
+	gap: 10px 40px;
 }
 
 .title {
-  align-self: center;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 27px;
-  margin: 0;
+	align-self: center;
+	margin: 0;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 27px;
 }
 
 .vline {
-  border-left: 1px solid var(--gray-light)
+	border-left: 1px solid var(--gray-light)
 }
 
 .description {

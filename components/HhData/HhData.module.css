@@ -1,92 +1,92 @@
 .hh {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap: 30px;
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	gap: 30px;
 }
 
 .count {
-  padding: 20px;
-  text-align: center;
+	padding: 20px;
+	text-align: center;
 }
 
 .title {
-  margin: 0;
-  margin-bottom: 10px;
-  color: var(--black);
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 27px;
+	margin: 0;
+	margin-bottom: 10px;
+	color: var(--black);
+	font-weight: 300;
+	font-size: 20px;
+	line-height: 27px;
 }
 
 .countValue {
-  margin: 0;
-  color: var(--primary);
-  font-weight: 700;
-  font-size: 36px;
-  line-height: 49px;
+	margin: 0;
+	color: var(--primary);
+	font-weight: 700;
+	font-size: 36px;
+	line-height: 49px;
 }
 
 .salary {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  padding: 20px;
-  text-align: center;
-  gap: 20px 0;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 20px 0;
+	padding: 20px;
+	text-align: center;
 }
 
 /* дочерние div */
 .salary>div {
-  border-right: 1px solid var(--gray-light);
+	border-right: 1px solid var(--gray-light);
 }
 
 .salary>div:last-child {
-  border-right: none;
+	border-right: none;
 }
 
 .salaryValue {
-  margin: 0;
-  font-weight: 700;
-  font-size: 26px;
-  line-height: 35px;
-  font-weight: bold;
-  margin-bottom: 10px;
+	margin: 0;
+	margin-bottom: 10px;
+	font-weight: 700;
+	font-weight: bold;
+	font-size: 26px;
+	line-height: 35px;
 }
 
 .rate {
-  display: grid;
-  grid-template-columns: repeat(3, 20px);
-  gap: 10px;
-  justify-content: center;
+	display: grid;
+	grid-template-columns: repeat(3, 20px);
+	gap: 10px;
+	justify-content: center;
 
 }
 
 .filled circle {
-  fill: var(--red)
+	fill: var(--red)
 }
 
-@media screen and (max-width: 1200px) {
-  .hh {
-    grid-template-columns: 1fr;
-  }
+@media screen and (width <= 1200px) {
+	.hh {
+		grid-template-columns: 1fr;
+	}
 }
 
-@media screen and (max-width: 640px) {
-  .salary {
-    grid-template-columns: 1fr;
-  }
+@media screen and (width <= 640px) {
+	.salary {
+		grid-template-columns: 1fr;
+	}
   
-  /* дочерние div */
-  .salary>div {
-    border-right: 1px solid var(--gray-light);
-    border-right: none;
-    border-bottom: 1px solid var(--gray-light);
-    padding-bottom: 20px;
-  }
+	/* дочерние div */
+	.salary>div {
+		padding-bottom: 20px;
+		border-right: 1px solid var(--gray-light);
+		border-right: none;
+		border-bottom: 1px solid var(--gray-light);
+	}
 
-  .salary>div:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
+	.salary>div:last-child {
+		padding-bottom: 0;
+		border-bottom: none;
+	}
 }
 
 
