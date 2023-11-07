@@ -4,8 +4,19 @@ import s from './TextArea.module.css';
 import { TextAreaProps } from './TextArea.props';
 
 const TextArea = forwardRef(
-  ({ className, ...props }: TextAreaProps, ref: ForwardedRef<HTMLTextAreaElement>) => {
-    return <textarea className={cn(className, s.textarea)} {...props} ref={ref}/>;
+  ({ className, error, ...props }: TextAreaProps, ref: ForwardedRef<HTMLTextAreaElement>) => {
+    return (
+      <div className={cn(className, s.textareaWrapper)}>
+        <textarea
+          className={cn(s.textarea, {
+            [s.error]: error
+          })}
+          {...props}
+          ref={ref}
+        />
+        {error && <span className={s.errorMessage}>{error.message}</span>}
+      </div>
+    );
   }
 );
 

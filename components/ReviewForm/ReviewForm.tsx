@@ -1,4 +1,4 @@
-import React, { type FC } from 'react';
+import React, { useState, type FC } from 'react';
 import cn from 'classnames';
 import s from './ReviewForm.module.css';
 import { ReviewFormProps } from './ReviewForm.props';
@@ -7,38 +7,76 @@ import Rating from '../Rating/Rating';
 import TextArea from '../TextArea/TextArea';
 import Button from '../Button/Button';
 import CloseIcon from './close.svg';
-import { IReviewForm } from './ReviewForm.interface';
+import { IReviewForm, IReviewSentResponse } from './ReviewForm.interface';
 import { useForm, Controller } from 'react-hook-form';
+import axios from 'axios';
+import { API } from '@/helpers/api';
 
 const ReviewForm: FC<ReviewFormProps> = ({ productId, className, ...props }) => {
-  const { register, control, handleSubmit } = useForm<IReviewForm>();
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<IReviewForm>();
 
-  const onSubmit = (data: IReviewForm) => {
-    console.log(data);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const [error, setError] = useState<string>();
+
+  const onSubmit = async (formData: IReviewForm) => {
+    try {
+      const { data } = await axios.post<IReviewSentResponse>(API.review.createDemo, {
+        ...formData,
+        productId
+      });
+      if (data.message) {
+        setIsSuccess(true);
+      } else {
+        setError('Что-то пошло не так');
+      }
+    } catch (e) {
+      setError(e.message);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={cn(s.reviewForm, className)} {...props}>
-        <Input {...register('name')} placeholder='Имя' />
-        <Input {...register('title')} className={s.title} placeholder='Заголовок отзыва' />
+        <Input
+          {...register('name', { required: { value: true, message: 'Заполните имя' } })}
+          placeholder='Имя'
+          error={errors.name}
+        />
+        <Input
+          {...register('title', { required: { value: true, message: 'Заполните заголовок' } })}
+          className={s.title}
+          placeholder='Заголовок отзыва'
+          error={errors.title}
+        />
         <div className={s.rating}>
           <span>Оценка:</span>
           <Controller
             control={control}
             name='rating'
-            render={({ field }) => <Rating
-            ref={field.ref}
-            isEditable 
-            rating={field.value} 
-            setRating={field.onChange}
-            />}
+            rules={{ required: { value: true, message: 'Укажите рейтинг' } }}
+            render={({ field, fieldState: { invalid, isTouched, isDirty, error }, formState }) => (
+              <Rating
+                ref={field.ref}
+                isEditable
+                rating={field.value}
+                setRating={field.onChange}
+                error={errors.rating}
+              />
+            )}
           />
         </div>
         <TextArea
-          {...register('description')}
+          {...register('description', {
+            required: { value: true, message: 'Заполните описание' }
+          })}
           className={s.description}
           placeholder='Текст отзыва'
+          error={errors.description}
         />
         <div className={s.submit}>
           <Button variant='primary'>Отправить</Button>

@@ -1,26 +1,30 @@
-import React, { useEffect, useState, KeyboardEvent, forwardRef, ForwardedRef } from 'react';
+import React, {
+  useEffect,
+  useState,
+  KeyboardEvent,
+  forwardRef,
+  ForwardedRef,
+  Fragment
+} from 'react';
 import cn from 'classnames';
 import s from './Rating.module.css';
 import { RatingProps } from './Rating.props';
 import StarIcon from './star.svg';
 
-const Rating = forwardRef(({
-  isEditable = false,
-  rating,
-  setRating,
-  className,
-  ...props
-}: RatingProps, ref: ForwardedRef<HTMLDivElement>) => {
-  const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
+const Rating = forwardRef(
+  (
+    { isEditable = false, rating, setRating, className, error, ...props }: RatingProps,
+    ref: ForwardedRef<HTMLDivElement>
+  ) => {
+    const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
 
-  useEffect(() => {
-    constructRating(rating);
-  }, [rating]);
+    useEffect(() => {
+      constructRating(rating);
+    }, [rating]);
 
-  const constructRating = (currentRating: number) => {
-    const updatedArray = ratingArray.map((r: JSX.Element, i: number) => {
-      return (
-      
+    const constructRating = (currentRating: number) => {
+      const updatedArray = ratingArray.map((r: JSX.Element, i: number) => {
+        return (
           <StarIcon
             className={cn(s.star, {
               [s.filled]: i < currentRating,
@@ -32,34 +36,43 @@ const Rating = forwardRef(({
             tabIndex={isEditable ? 0 : -1}
             onKeyDown={(e: KeyboardEvent<SVGAElement>) => isEditable && handleSpace(i + 1, e)}
           />
-    
-      );
-    });
-    setRatingArray(updatedArray);
-  };
+        );
+      });
+      setRatingArray(updatedArray);
+    };
 
-  const changeDisplay = (i: number) => {
-    if (!isEditable) return;
-    constructRating(i);
-  };
+    const changeDisplay = (i: number) => {
+      if (!isEditable) return;
+      constructRating(i);
+    };
 
-  const onClickRating = (i: number) => {
-    if (!isEditable || !setRating) return;
-    setRating(i);
-  };
+    const onClickRating = (i: number) => {
+      if (!isEditable || !setRating) return;
+      setRating(i);
+    };
 
-  const handleSpace = (i: number, e: KeyboardEvent<SVGAElement>) => {
-    if (e.code != 'Space' || !setRating) return;
-    setRating(i);
-  };
+    const handleSpace = (i: number, e: KeyboardEvent<SVGAElement>) => {
+      if (e.code != 'Space' || !setRating) return;
+      setRating(i);
+    };
 
-  return (
-    <div className={cn(className)} {...props} ref={ref}>
-      {ratingArray.map((r, i) => (
-        <span key={i}>{r}</span>
-      ))}
-    </div>
-  );
-})
+    return (
+      <div
+        className={cn(className, s.ratingWrapper, {
+          [s.error]: error
+        })}
+        {...props}
+        ref={ref}
+      >
+        {ratingArray.map((r, i) => (
+          <Fragment key={i}>
+            <span>{r}</span>
+            {error && <span className={s.errorMessage}>{error.message}</span>}
+          </Fragment>
+        ))}
+      </div>
+    );
+  }
+);
 
 export default Rating;
