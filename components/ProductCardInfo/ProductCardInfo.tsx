@@ -10,7 +10,12 @@ import Divider from '../Divider/Divider';
 import Image from 'next/image';
 import cn from 'classnames';
 
-const ProductCardInfo: FC<ProductCardInfoProps> = ({ product, handleReviewOpened, isReviewOpened }) => {
+const ProductCardInfo: FC<ProductCardInfoProps> = ({
+  product,
+  handleReviewOpened,
+  isReviewOpened,
+  scrollToReview
+}) => {
   return (
     <Card className={s.product}>
       <div className={s.logo}>
@@ -46,7 +51,9 @@ const ProductCardInfo: FC<ProductCardInfoProps> = ({ product, handleReviewOpened
       <div className={s.priceTitle}>цена</div>
       <div className={s.creditTitle}>кредит</div>
       <div className={s.rateTitle}>
-        {product.reviewCount} {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+        <a href='#ref' onClick={scrollToReview}>
+          {product.reviewCount} {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+        </a>
       </div>
       <Divider className={s.hr} />
       <div className={s.description}>{product.description}</div>
@@ -76,7 +83,11 @@ const ProductCardInfo: FC<ProductCardInfoProps> = ({ product, handleReviewOpened
       <Divider className={cn(s.hr, s.hr2)} />
       <div className={s.actions}>
         <Button variant='primary'>Узнать подробнее</Button>
-        <Button variant='outlined' arrow={isReviewOpened ? 'down': 'right'} onClick={handleReviewOpened}>
+        <Button
+          variant='outlined'
+          arrow={isReviewOpened ? 'down' : 'right'}
+          onClick={handleReviewOpened}
+        >
           Читать отзывы
         </Button>
       </div>

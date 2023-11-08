@@ -17,11 +17,12 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, ...props }) => 
     register,
     control,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    reset
   } = useForm<IReviewForm>();
 
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<string | null>(null);
 
   const onSubmit = async (formData: IReviewForm) => {
     try {
@@ -31,10 +32,11 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, ...props }) => 
       });
       if (data.message) {
         setIsSuccess(true);
+        reset();
       } else {
         setError('Что-то пошло не так');
       }
-    } catch (e) {
+    } catch (e: any) {
       setError(e.message);
     }
   };
@@ -59,7 +61,7 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, ...props }) => 
             control={control}
             name='rating'
             rules={{ required: { value: true, message: 'Укажите рейтинг' } }}
-            render={({ field, fieldState: { invalid, isTouched, isDirty, error }, formState }) => (
+            render={({ field }) => (
               <Rating
                 ref={field.ref}
                 isEditable
@@ -86,11 +88,20 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, ...props }) => 
         </div>
       </div>
 
-      <div className={s.success}>
-        <div className={s.successTitle}>Ваш отзыв отправлен</div>
-        <div>Спасибо, Ваш отзыв будет отправлен после проверки.</div>
-        <CloseIcon className={s.close} />
-      </div>
+      {isSuccess && (
+        <div className={cn(s.panel, s.success)}>
+          <div className={s.successTitle}>Ваш отзыв отправлен</div>
+          <div>Спасибо, Ваш отзыв будет отправлен после проверки.</div>
+          <CloseIcon className={s.close} onClick={()=>{setIsSuccess(false)}}/>
+        </div>
+      )}
+
+      {error && (
+        <div className={cn(s.panel, s.error)}>
+          Что-то пошло не так. Попробуйте обновить страницу.
+          <CloseIcon className={s.close} onClick={()=>{setError(null)}}/>
+        </div>
+      )}
     </form>
   );
 };

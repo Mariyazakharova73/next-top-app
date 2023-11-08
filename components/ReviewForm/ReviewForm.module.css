@@ -29,12 +29,24 @@
 	gap: 20px;
 }
 
-.success {
+
+.panel {
 	position: relative;
 	margin-top: 20px;
 	padding: 20px;
-	background-color: var(--green-light);
 	border-radius: 5px
+}
+
+.success {
+	background-color: var(--green-light);
+}
+
+.error {
+	background-color: var(--red-light);
+}
+
+.error .close path {
+	stroke: var(--red)
 }
 
 .successTitle {
@@ -48,7 +60,7 @@
 	cursor: pointer;
 }
 
-@media screen and (width <= 1100px) {
+@media screen and (width <=1100px) {
 	.reviewForm {
 		grid-template-columns: [start] 1fr 1fr [end];
 	}
@@ -63,7 +75,7 @@
 	}
 }
 
-@media screen and (width <= 860px) {
+@media screen and (width <=860px) {
 	.reviewForm {
 		grid-template-columns: [start] 1fr [end];
 	}

@@ -6,4 +6,5 @@ export interface ProductCardInfoProps
   product: ProductModel;
   handleReviewOpened: () => void;
   isReviewOpened: boolean
+  scrollToReview: () => void;
 }

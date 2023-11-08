@@ -29,6 +29,8 @@
 	white-space: nowrap;
 }
 
+
+
 .hr, .description, .actions {
 	grid-column: start / end;
 
@@ -68,6 +70,10 @@
 	font-weight: 300;
 	font-size: 14px;
 	line-height: 19px;
+}
+
+.rateTitle a {
+	color: var(--primary);
 }
 
 .month {
@@ -136,7 +142,7 @@
 	border-bottom: 1px dashed var(--gray-light);
 }
 
-@media screen and (width <= 1320px) {
+@media screen and (width <=1320px) {
 	.product {
 		grid-template-areas:
 			'logo . title title title title title'
@@ -214,7 +220,7 @@
 	}
 }
 
-@media screen and (width <= 640px) {
+@media screen and (width <=640px) {
 	.product {
 		grid-template-areas:
 			'logo . title'
@@ -248,7 +254,7 @@
 	}
 }
 
-@media screen and (width <= 480px) {
+@media screen and (width <=480px) {
 	.product {
 		grid-template-areas:
 			'logo'
