@@ -1,10 +1,4 @@
-.closed {
-	max-height: 0;
-	padding: 0;
-	overflow: hidden;
-}
-
-.opened {
-	max-height: auto;
-	padding: 30px;
+.reviews {
+  overflow: hidden;
+  padding: 30px;
 }

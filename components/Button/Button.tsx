@@ -3,10 +3,13 @@ import cn from 'classnames';
 import s from './Button.module.css';
 import { ButtonProps } from './Button.props';
 import ArrowIcon from './arrow.svg';
+import { motion } from 'framer-motion'
 
 const Button: FC<ButtonProps> = ({ children, variant, className, arrow = 'none', ...props }) => {
+
   return (
-    <button
+    <motion.button
+      whileHover={{scale: 1.05}}
       className={cn(s.button, className, {
         [s.primary]: variant === 'primary',
         [s.outlined]: variant === 'outlined'
@@ -23,7 +26,7 @@ const Button: FC<ButtonProps> = ({ children, variant, className, arrow = 'none',
           <ArrowIcon/>
         </span>
       )}
-    </button>
+    </motion.button>
   );
 };
 

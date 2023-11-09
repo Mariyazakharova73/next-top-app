@@ -7,6 +7,7 @@ import Sidebar from './Sidebar/Sidebar';
 import Footer from './Footer/Footer';
 import { AppContextProvider } from '@/context/app.context';
 import { IAppContext } from './../context/app.context';
+import UpButton from './../components/UpButton/UpButton';
 
 const Layout: FC<LayoutProps> = ({ children }) => {
   return (
@@ -14,6 +15,7 @@ const Layout: FC<LayoutProps> = ({ children }) => {
       <Header className={s.header} />
       <Sidebar className={s.sidebar} />
       <div className={s.body}>{children}</div>
+      <UpButton/>
       <Footer className={s.footer} />
     </div>
   );
