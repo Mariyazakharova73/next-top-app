@@ -52,8 +52,8 @@
 	color: var(--gray-dark);
 	font-weight: 500;
 	font-size: 14px;
-	line-height: 19px;
 	cursor: pointer;
+	outline-offset: -1px;
 }
 
 .thirdLevelActive,
