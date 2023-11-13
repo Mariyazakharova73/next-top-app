@@ -28,35 +28,7 @@ function Home({ menu }: HomeProps) {
         />
       </Head>
       <>
-   
-        <Htag tag='h1'>Текст</Htag>
-        <Button variant='primary'>Кнопка</Button>
-        <Button variant='outlined'>Кнопка</Button>
-        <Button variant='outlined' arrow='right'>
-          Кнопка
-        </Button>
-        <Button variant='primary' arrow='down'>
-          Кнопка
-        </Button>
-        <Typography size='s'>Параграф</Typography>
-        <Typography size='m'>Параграф</Typography>
-        <Typography size='l'>Параграф</Typography>
-        <Tag size='s' color='ghost'>
-          Tag
-        </Tag>
-        <Tag size='s' color='red'>
-          Tag
-        </Tag>
-        <Tag size='s' color='green'>
-          Tag
-        </Tag>
-        <Tag size='s' color='primary'>
-          Tag
-        </Tag>
-        <Tag size='m' color='primary'>
-          Tag
-        </Tag>
-        <Rating rating={rating} isEditable setRating={setRating} />
+      test
       </>
     </>
   );
@@ -70,7 +42,7 @@ export interface HomeProps extends Record<string, unknown> {
 }
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const firstCategory = 1;
+  const firstCategory = 0;
   const { data: menu } = await axios.post<MenuItem[]>(API.topPage.find,
     { firstCategory }
   );

@@ -34,7 +34,7 @@ const Rating = forwardRef(
             onMouseLeave={() => changeDisplay(rating)}
             onClick={() => onClickRating(i + 1)}
             tabIndex={isEditable ? 0 : -1}
-            onKeyDown={(e: KeyboardEvent<SVGAElement>) => isEditable && handleSpace(i + 1, e)}
+            onKeyDown={handleKey}
           />
         );
       });
@@ -51,9 +51,18 @@ const Rating = forwardRef(
       setRating(i);
     };
 
-    const handleSpace = (i: number, e: KeyboardEvent<SVGAElement>) => {
-      if (e.code != 'Space' || !setRating) return;
-      setRating(i);
+    const handleKey = (e: KeyboardEvent<SVGAElement>) => {
+      if (!isEditable || !setRating) {
+        return;
+      }
+      if (e.code == 'ArrowRight' || e.code == 'ArrowUp') {
+        e.preventDefault();
+        setRating(rating + 1);
+      }
+      if (e.code == 'ArrowLeft' || e.code == 'ArrowDown') {
+        e.preventDefault();
+        setRating(rating - 1);
+      }
     };
 
     return (

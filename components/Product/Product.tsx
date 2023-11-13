@@ -18,7 +18,7 @@ const Product = motion(
       const variants = {
         visible: {
           opacity: 1,
-          height: "auto"
+          height: 'auto'
         },
         hidden: {
           opacity: 0,
@@ -36,6 +36,7 @@ const Product = motion(
           behavior: 'smooth',
           block: 'start'
         });
+        reviewRef.current?.focus();
       };
 
       return (
@@ -47,17 +48,13 @@ const Product = motion(
             scrollToReview={scrollToReview}
           />
           <motion.div
-          variants={variants}
-          layout
-          initial={'hidden'}
-          animate={isReviewOpened ? 'visible' : 'hidden'}
-          className={cn(s.wrapper)}
+            variants={variants}
+            layout
+            initial={'hidden'}
+            animate={isReviewOpened ? 'visible' : 'hidden'}
+            className={cn(s.wrapper)}
           >
-            <Card
-              ref={reviewRef}
-              color='blue'
-              className={cn(s.reviews)}
-            >
+            <Card tabIndex={0} ref={reviewRef} color='blue' className={cn(s.reviews)}>
               {product.reviews.map((r) => (
                 <Fragment key={r._id}>
                   <Review review={r} />
