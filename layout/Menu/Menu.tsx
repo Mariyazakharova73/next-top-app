@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 const Menu = () => {
   const { menu, changeMenu, firstCategory } = useContext(AppContext);
   const router = useRouter();
+  
   const variants = {
     visible: {
       marginBottom: 20,

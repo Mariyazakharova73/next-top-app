@@ -33,7 +33,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths = paths.concat(
       menu.flatMap((m) => m.pages.map((p) => `/${firstLevelItem.route}/${p.alias}`))
     );
-    console.log(paths);
   }
 
   return {

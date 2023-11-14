@@ -38,8 +38,9 @@
 </details>
 
 <!-- [Ссылка на проект next-top-app](https://mariyazakharova73.github.io/)
+-->
 
 <div align="center">
-  <img width="575" alt="Приложение." src="./src/images/app.png">
-</div> -->
+  <img width="575" alt="Приложение." src="./public/app.png">
+</div> 
 

@@ -30,7 +30,6 @@ const TopPageComponent: FC<TopPageComponentProps> = ({ page, products, firstCate
 
   return (
     <div className={s.wrapper}>
-      {positioY}
       <div className={s.title}>
         <Htag tag='h1'>{page.title}</Htag>
         {products && (
