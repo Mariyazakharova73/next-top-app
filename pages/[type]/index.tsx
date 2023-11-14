@@ -11,8 +11,8 @@ export interface TypeProps extends Record<string, unknown> {
   firstCategory: number;
 }
 
-function Type({ menu, firstCategory }: TypeProps): JSX.Element {
-  return <div>Type {firstCategory} /courses</div>;
+function Type({ firstCategory }: TypeProps): JSX.Element {
+  return <div>Type {firstCategory} </div>;
 }
 
 export default withLayout(Type);

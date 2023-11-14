@@ -4,7 +4,8 @@ import React, {
   KeyboardEvent,
   forwardRef,
   ForwardedRef,
-  Fragment
+  Fragment,
+  useRef
 } from 'react';
 import cn from 'classnames';
 import s from './Rating.module.css';
@@ -13,19 +14,33 @@ import StarIcon from './star.svg';
 
 const Rating = forwardRef(
   (
-    { isEditable = false, rating, setRating, className, error, ...props }: RatingProps,
+    { isEditable = false, rating, setRating, className, error, tabIndex, ...props }: RatingProps,
     ref: ForwardedRef<HTMLDivElement>
   ) => {
     const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
+    const ratingRef = useRef<(HTMLSpanElement | null)[]>([]);
 
     useEffect(() => {
       constructRating(rating);
-    }, [rating]);
+    }, [rating, tabIndex]);
+
+    const computeFocus = (rating: number, index: number): number => {
+      if (!isEditable) {
+        return -1;
+      }
+      if (!rating && index === 0) {
+        return tabIndex ?? 0;
+      }
+      if (rating === index + 1) {
+        return tabIndex ?? 0;
+      }
+      return -1;
+    };
 
     const constructRating = (currentRating: number) => {
       const updatedArray = ratingArray.map((r: JSX.Element, i: number) => {
         return (
-          <StarIcon
+          <span
             className={cn(s.star, {
               [s.filled]: i < currentRating,
               [s.editable]: isEditable
@@ -33,9 +48,12 @@ const Rating = forwardRef(
             onMouseEnter={() => changeDisplay(i + 1)}
             onMouseLeave={() => changeDisplay(rating)}
             onClick={() => onClickRating(i + 1)}
-            tabIndex={isEditable ? 0 : -1}
-            onKeyDown={(e: KeyboardEvent<SVGAElement>) => isEditable && handleSpace(i + 1, e)}
-          />
+            tabIndex={computeFocus(rating, i)}
+            onKeyDown={(e: KeyboardEvent) => handleKey(e)}
+            ref={(r) => ratingRef.current?.push(r)}
+          >
+            <StarIcon />
+          </span>
         );
       });
       setRatingArray(updatedArray);
@@ -51,9 +69,30 @@ const Rating = forwardRef(
       setRating(i);
     };
 
-    const handleSpace = (i: number, e: KeyboardEvent<SVGAElement>) => {
-      if (e.code != 'Space' || !setRating) return;
-      setRating(i);
+    const handleKey = (e: KeyboardEvent) => {
+      if (!isEditable || !setRating) {
+        return;
+      }
+
+      if (e.code === 'ArrowRight' || e.code === 'ArrowUp') {
+        if (!rating) {
+          setRating(1);
+        } else {
+          e.preventDefault();
+          setRating(rating < 5 ? rating + 1 : 5);
+        }
+        ratingRef.current[rating]?.focus();
+      }
+
+      if (e.code === 'ArrowLeft' || e.code === 'ArrowDown') {
+        if (!rating) {
+          setRating(1);
+        } else {
+          e.preventDefault();
+          setRating(rating > 0 ? rating - 1 : 0);
+        }
+        ratingRef.current[rating - 2]?.focus();
+      }
     };
 
     return (

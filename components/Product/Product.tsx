@@ -36,6 +36,7 @@ const Product = motion(
           behavior: 'smooth',
           block: 'start'
         });
+        reviewRef.current?.focus()
       };
 
       return (
@@ -55,6 +56,7 @@ const Product = motion(
           >
             <Card
               ref={reviewRef}
+              tabIndex={isReviewOpened? 0: -1}
               color='blue'
               className={cn(s.reviews)}
             >
@@ -64,7 +66,7 @@ const Product = motion(
                   <Divider />
                 </Fragment>
               ))}
-              <ReviewForm productId={product._id} />
+              <ReviewForm productId={product._id} isReviewOpened={isReviewOpened}/>
             </Card>
           </motion.div>
         </div>

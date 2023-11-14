@@ -12,7 +12,7 @@ import { useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
 import { API } from '@/helpers/api';
 
-const ReviewForm: FC<ReviewFormProps> = ({ productId, className, ...props }) => {
+const ReviewForm: FC<ReviewFormProps> = ({ productId, className, isReviewOpened, ...props }) => {
   const {
     register,
     control,
@@ -48,12 +48,14 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, ...props }) => 
           {...register('name', { required: { value: true, message: 'Заполните имя' } })}
           placeholder='Имя'
           error={errors.name}
+          tabIndex={isReviewOpened? 0: -1}
         />
         <Input
           {...register('title', { required: { value: true, message: 'Заполните заголовок' } })}
           className={s.title}
           placeholder='Заголовок отзыва'
           error={errors.title}
+          tabIndex={isReviewOpened? 0: -1}
         />
         <div className={s.rating}>
           <span>Оценка:</span>
@@ -68,6 +70,7 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, ...props }) => 
                 rating={field.value}
                 setRating={field.onChange}
                 error={errors.rating}
+                tabIndex={isReviewOpened? 0: -1}
               />
             )}
           />
@@ -79,9 +82,10 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, ...props }) => 
           className={s.description}
           placeholder='Текст отзыва'
           error={errors.description}
+          tabIndex={isReviewOpened? 0: -1}
         />
         <div className={s.submit}>
-          <Button variant='primary'>Отправить</Button>
+          <Button variant='primary' tabIndex={isReviewOpened? 0: -1}>Отправить</Button>
           <span className={s.info}>
             * Перед публикацией отзыв пройдет предварительную модерацию и проверку
           </span>
