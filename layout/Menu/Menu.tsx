@@ -130,7 +130,7 @@ const Menu = () => {
     ));
   };
 
-  return <div className={s.menu}>{buildFirstLevel()}</div>;
+  return <nav role='navigation' className={s.menu}>{buildFirstLevel()}</nav>;
 };
 
 export default Menu;

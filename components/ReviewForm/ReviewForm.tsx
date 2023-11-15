@@ -18,7 +18,8 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, isReviewOpened,
     control,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
+    clearErrors
   } = useForm<IReviewForm>();
 
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -48,14 +49,16 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, isReviewOpened,
           {...register('name', { required: { value: true, message: 'Заполните имя' } })}
           placeholder='Имя'
           error={errors.name}
-          tabIndex={isReviewOpened? 0: -1}
+          tabIndex={isReviewOpened ? 0 : -1}
+          aria-invalid={errors.name ? true : false}
         />
         <Input
           {...register('title', { required: { value: true, message: 'Заполните заголовок' } })}
           className={s.title}
           placeholder='Заголовок отзыва'
           error={errors.title}
-          tabIndex={isReviewOpened? 0: -1}
+          tabIndex={isReviewOpened ? 0 : -1}
+          aria-invalid={errors.title ? true : false}
         />
         <div className={s.rating}>
           <span>Оценка:</span>
@@ -70,7 +73,7 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, isReviewOpened,
                 rating={field.value}
                 setRating={field.onChange}
                 error={errors.rating}
-                tabIndex={isReviewOpened? 0: -1}
+                tabIndex={isReviewOpened ? 0 : -1}
               />
             )}
           />
@@ -82,10 +85,14 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, isReviewOpened,
           className={s.description}
           placeholder='Текст отзыва'
           error={errors.description}
-          tabIndex={isReviewOpened? 0: -1}
+          tabIndex={isReviewOpened ? 0 : -1}
+          aria-label='Текст отзыва'
+          aria-invalid={errors.description ? true : false}
         />
         <div className={s.submit}>
-          <Button variant='primary' tabIndex={isReviewOpened? 0: -1}>Отправить</Button>
+          <Button variant='primary' tabIndex={isReviewOpened ? 0 : -1} onClick={() => clearErrors()}>
+            Отправить
+          </Button>
           <span className={s.info}>
             * Перед публикацией отзыв пройдет предварительную модерацию и проверку
           </span>
@@ -96,14 +103,24 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, isReviewOpened,
         <div className={cn(s.panel, s.success)}>
           <div className={s.successTitle}>Ваш отзыв отправлен</div>
           <div>Спасибо, Ваш отзыв будет отправлен после проверки.</div>
-          <CloseIcon className={s.close} onClick={()=>{setIsSuccess(false)}}/>
+          <CloseIcon
+            className={s.close}
+            onClick={() => {
+              setIsSuccess(false);
+            }}
+          />
         </div>
       )}
 
       {error && (
         <div className={cn(s.panel, s.error)}>
           Что-то пошло не так. Попробуйте обновить страницу.
-          <CloseIcon className={s.close} onClick={()=>{setError(null)}}/>
+          <CloseIcon
+            className={s.close}
+            onClick={() => {
+              setError(null);
+            }}
+          />
         </div>
       )}
     </form>

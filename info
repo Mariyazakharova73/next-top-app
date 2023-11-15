@@ -9,3 +9,6 @@ stylelint-order
 stylelint-order-config-standard
 
 NEXT_PUBLIC_DOMAIN доступна и на клиенте потому что имеет приставку NEXT_PUBLIC
+
+
+на div и span aria-label игнорируется

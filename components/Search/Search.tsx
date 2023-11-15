@@ -25,13 +25,13 @@ const Search: FC<SearchProps> = ({ className, ...props }) => {
   };
 
   const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Enter') {
-        goToSearch()
-      }
+    if (e.key === 'Enter') {
+      goToSearch();
     }
+  };
 
   return (
-    <div className={cn(className, s.search)} {...props}>
+    <form className={cn(className, s.search)} {...props} role='search'>
       <Input
         placeholder='Поиск...'
         value={search}
@@ -39,10 +39,15 @@ const Search: FC<SearchProps> = ({ className, ...props }) => {
         className={s.input}
         onKeyDown={handleKeyDown}
       />
-      <Button variant='primary' className={s.button} onClick={goToSearch}>
+      <Button
+        aria-label='Искать по сайту'
+        variant='primary'
+        className={s.button}
+        onClick={goToSearch}
+      >
         <SearchIcon />
       </Button>
-    </div>
+    </form>
   );
 };
 

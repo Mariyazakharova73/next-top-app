@@ -28,17 +28,23 @@ const ProductCardInfo: FC<ProductCardInfoProps> = ({
       </div>
       <div className={s.title}>{product.title}</div>
       <div className={s.price}>
-        {priceRu(product.price)}
+        <span>
+          <span className='visualyHidden'>цена</span>
+          {priceRu(product.price)}
+        </span>
         {product.oldPrice && (
           <Tag className={s.oldPrice} color='green'>
+            <span className='visualyHidden'>скидка</span>
             {priceRu(product.price - product.oldPrice)}
           </Tag>
         )}
       </div>
       <div className={s.credit}>
+        <span className='visualyHidden'>кредит</span>
         {priceRu(product.credit)}/<span className={s.month}>мес</span>
       </div>
       <div className={s.rating}>
+        <span className='visualyHidden'>рейтинг {product.reviewAvg ?? product.initialRating}</span>
         <Rating rating={product.reviewAvg ?? product.initialRating} />
       </div>
       <div className={s.tags}>
@@ -48,8 +54,12 @@ const ProductCardInfo: FC<ProductCardInfoProps> = ({
           </Tag>
         ))}
       </div>
-      <div className={s.priceTitle}>цена</div>
-      <div className={s.creditTitle}>кредит</div>
+      <div className={s.priceTitle} aria-hidden={true}>
+        цена
+      </div>
+      <div className={s.creditTitle} aria-hidden={true}>
+        кредит
+      </div>
       <div className={s.rateTitle}>
         <a href='#ref' onClick={scrollToReview}>
           {product.reviewCount} {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
@@ -87,6 +97,7 @@ const ProductCardInfo: FC<ProductCardInfoProps> = ({
           variant='outlined'
           arrow={isReviewOpened ? 'down' : 'right'}
           onClick={handleReviewOpened}
+          aria-expanded={isReviewOpened}
         >
           Читать отзывы
         </Button>

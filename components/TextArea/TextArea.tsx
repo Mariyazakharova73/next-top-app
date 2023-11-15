@@ -8,6 +8,7 @@ const TextArea = forwardRef(
     return (
       <div className={cn(className, s.textareaWrapper)}>
         <textarea
+        role='alert'
           className={cn(s.textarea, {
             [s.error]: error
           })}

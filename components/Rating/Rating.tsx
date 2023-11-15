@@ -51,6 +51,12 @@ const Rating = forwardRef(
             tabIndex={computeFocus(rating, i)}
             onKeyDown={(e: KeyboardEvent) => handleKey(e)}
             ref={(r) => ratingRef.current?.push(r)}
+            role={isEditable ? 'slider' : ''}
+            aria-label={isEditable ? 'Укажите рейтинг' : 'рейтинг' + rating}
+            aria-valuenow={rating}
+            aria-valuemax={5}
+            aria-valuemin={1}
+            aria-invalid={error ? true : false}
           >
             <StarIcon />
           </span>
@@ -106,7 +112,7 @@ const Rating = forwardRef(
         {ratingArray.map((r, i) => (
           <Fragment key={i}>
             <span>{r}</span>
-            {error && <span className={s.errorMessage}>{error.message}</span>}
+            {error && <span role='alert' className={s.errorMessage}>{error.message}</span>}
           </Fragment>
         ))}
       </div>
