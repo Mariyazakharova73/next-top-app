@@ -90,7 +90,11 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, isReviewOpened,
           aria-invalid={errors.description ? true : false}
         />
         <div className={s.submit}>
-          <Button variant='primary' tabIndex={isReviewOpened ? 0 : -1} onClick={() => clearErrors()}>
+          <Button
+            variant='primary'
+            tabIndex={isReviewOpened ? 0 : -1}
+            onClick={() => clearErrors()}
+          >
             Отправить
           </Button>
           <span className={s.info}>
@@ -100,27 +104,24 @@ const ReviewForm: FC<ReviewFormProps> = ({ productId, className, isReviewOpened,
       </div>
 
       {isSuccess && (
-        <div className={cn(s.panel, s.success)}>
+        <div className={cn(s.panel, s.success)} role='alert'>
           <div className={s.successTitle}>Ваш отзыв отправлен</div>
           <div>Спасибо, Ваш отзыв будет отправлен после проверки.</div>
-          <CloseIcon
-            className={s.close}
-            onClick={() => {
+          <button aria-label='Закрыть оповещение' onClick={() => {
               setIsSuccess(false);
-            }}
-          />
+            }} className={s.close}><CloseIcon
+          /></button>
         </div>
       )}
 
       {error && (
         <div className={cn(s.panel, s.error)}>
           Что-то пошло не так. Попробуйте обновить страницу.
-          <CloseIcon
-            className={s.close}
-            onClick={() => {
+          <button aria-label='Закрыть оповещение' onClick={() => {
               setError(null);
-            }}
-          />
+            }} className={s.close}><CloseIcon
+            
+          /></button>
         </div>
       )}
     </form>

@@ -22,8 +22,11 @@
 .secondLevelWrapper {
 	margin-top: 15px;
 	margin-left: 12px;
+	padding: 0;
 	padding-left: 32px;
+	list-style: none;
 	border-left: 1px solid #DFDFDF;
+	
 }
 
 .secondLevelTitle {
@@ -33,6 +36,8 @@
 	font-size: 12px;
 	line-height: 16px;
 	text-transform: uppercase;
+	background: none;
+	border: none;
 	cursor: pointer;
 	opacity: 1;
 	transition: opacity .5s;
@@ -43,7 +48,10 @@
 }
 
 .secondLevelBlock {
+	padding: 0;
 	overflow: hidden;
+	list-style: none
+	
 }
 
 .thirdLevel {
@@ -52,11 +60,16 @@
 	color: var(--gray-dark);
 	font-weight: 500;
 	font-size: 14px;
-	cursor: pointer;
 	outline-offset: -1px;
+	cursor: pointer;
 }
 
 .thirdLevelActive,
 .thirdLevel:hover {
 	color: var(--primary)
+}
+
+.FirstLevelList {
+	padding: 0;
+	list-style: none
 }

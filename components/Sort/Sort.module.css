@@ -25,11 +25,11 @@
 	grid-template-columns: 20px 1fr;
 	gap: 8px;
 	align-items: center;
-	cursor: pointer;
-	border: none;
-	background: transparent;
-	line-height: 22px;
 	font-size: 16px;
+	line-height: 22px;
+	background: transparent;
+	border: none;
+	cursor: pointer;
 }
 
 .sort button:not(.active) {

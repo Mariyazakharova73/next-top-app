@@ -4,7 +4,7 @@
 	--gray-light: #EBEBEB;
 	--gray: #A4A4A4;
 	--gray-dark: #787D85;
-	--primary: #295d43;
+	--primary: #295D43;
 	--primary-hover: #407B5E;
 	--red: #F38181;
 	--red-light: #F7B7B7;
@@ -32,8 +32,8 @@ a {
 }
 
 .visualyHidden {
+	position: absolute;
 	width: 0;
 	height: 0;
 	overflow: hidden;
-	position: absolute;
 }

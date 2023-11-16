@@ -24,14 +24,14 @@
 }
 
 
-@media (max-width: 765px) {
+@media (width <= 765px) {
 	.wrapper {
 		grid-template-areas:
 			"header"
 			"body"
 			"footer";
-		gap: 10px;
 		grid-template-columns: minmax(320px, 1fr);
+		gap: 10px;
 
 	}
 
@@ -45,14 +45,14 @@
 }
 
 .skipLink {
-	display: block;
 	position: fixed;
-	left: 100px;
 	top: 0;
-	overflow: hidden;
+	left: 100px;
+	display: block;
 	height: 0;
-	background: var(--primary);
+	overflow: hidden;
 	color: var(--white);
+	background: var(--primary);
 }
 
 .displayed {

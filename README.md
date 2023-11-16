@@ -7,7 +7,7 @@
 Роутинг настроен без App Router.
 Для управления состоянием используется React Contex.
 В верстке используется grid. Работа с формой осуществляется через react hook form.
-Проводилась работа над доступностью (цветовая, доступность меню, форм с клавиатуры, доступность сортировки). Добавлены атрибуты aria-label, aria-selected, aria-labelledby, aria-hidden, aria-expanded, role, aria-valuemin, aria-valuenow, aria-valuemax, aria-invalid для некоторых элементов.
+Проводилась работа над доступностью (цветовая, доступность меню, форм с клавиатуры, доступность сортировки, доступность списков). Добавлены атрибуты aria-label, aria-selected, aria-labelledby, aria-hidden, aria-expanded, role, aria-valuemin, aria-valuenow, aria-valuemax, aria-invalid, aria-current для некоторых элементов.
 
 #### Технологии
 

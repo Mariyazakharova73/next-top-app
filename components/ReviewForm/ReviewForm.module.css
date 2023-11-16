@@ -57,7 +57,8 @@
 	position: absolute;
 	top: 20px;
 	right: 20px;
-	cursor: pointer;
+	background: none;
+	border:none;
 }
 
 @media screen and (width <=1100px) {

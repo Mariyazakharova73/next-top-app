@@ -8,6 +8,7 @@ import { ProductModel } from '@/interfaces/product.interface';
 import { firstLevelMenu } from '@/helpers/helpers';
 import TopPageComponent from '@/page-components/TopPageComponent/TopPageComponent';
 import { API } from '@/helpers/api';
+import Head from 'next/head';
 
 export interface TopPageProps extends Record<string, unknown> {
   menu: MenuItem[];
@@ -17,7 +18,18 @@ export interface TopPageProps extends Record<string, unknown> {
 }
 
 function TopPage({ menu, page, products, firstCategory }: TopPageProps): JSX.Element {
-  return <TopPageComponent firstCategory={firstCategory} page={page} products={products} />;
+  return (
+    <>
+      <Head>
+        <title>{page.metaTitle}</title>
+        <meta name='description' content={page.metaDescription} />
+        <meta property='og:title' content={page.metaTitle}/>
+        <meta property='og:description' content={page.metaDescription}/>
+        <meta property='og:type' content='article'/>
+      </Head>
+      <TopPageComponent firstCategory={firstCategory} page={page} products={products} />
+    </>
+  );
 }
 
 export default withLayout(TopPage);
