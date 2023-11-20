@@ -30,7 +30,7 @@ const UpButton = () => {
       animate={controls}
       initial={{ opacity: 0 }}
     >
-      <IconButton variant='primary' icon='up' onClick={scrollToTop}/>
+      <IconButton aria-label="Наверх" variant='primary' icon='up' onClick={scrollToTop}/>
     </motion.div>
   );
 };

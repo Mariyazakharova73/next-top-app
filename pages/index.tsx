@@ -3,6 +3,7 @@ import axios from 'axios';
 import { MenuItem } from '@/interfaces/menu.interface';
 import { withLayout } from '@/layout/Layout';
 import { API } from '@/helpers/api';
+import Error from 'next'
 
 function Home({ menu, firstCategory }: HomeProps) {
   return <main>Home</main>;
